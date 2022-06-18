@@ -7,6 +7,6 @@ export default function useAuth(code) {
 	const [expiresIn, setExpiresIn] = useState()
 
 	useEffect(() => {
-		axios.post('http://localhost:3000/', { code }).then((res) => {})
+		axios.post('http://localhost:3000/login', { code }).then((res) => {})
 	}, [code])
 }
