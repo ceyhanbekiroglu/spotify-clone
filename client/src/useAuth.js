@@ -19,5 +19,8 @@ export default function useAuth(code) {
 				window.location = '/'
 			})
 	}, [code])
+
+	useEffect(() => {}, [refreshToken, expiresIn])
+
 	return accessToken
 }
