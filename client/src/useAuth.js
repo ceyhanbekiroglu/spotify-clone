@@ -10,11 +10,14 @@ export default function useAuth(code) {
 		axios
 			.post('http://localhost:3000/login', { code })
 			.then((res) => {
-				console.log(res.data)
+				setAccessToken(res.data.accessToken)
+				setRefreshToken(res.data.refreshToken)
+				setExpiresIn(res.data.expiresIn)
 				window.history.pushState({}, null, '/')
 			})
 			.catch(() => {
-				window.location = '/localhost:3000/login'
+				window.location = '/'
 			})
 	}, [code])
+	return accessToken
 }
