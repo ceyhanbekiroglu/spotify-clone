@@ -21,6 +21,7 @@ export default function useAuth(code) {
 	}, [code])
 
 	useEffect(() => {
+		if (!refreshToken || !expiresIn) return
 		axios
 			.post('http://localhost:3000/login', { code })
 			.then((res) => {
