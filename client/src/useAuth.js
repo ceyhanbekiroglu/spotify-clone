@@ -8,7 +8,7 @@ export default function useAuth(code) {
 
 	useEffect(() => {
 		axios
-			.post('http://localhost:3000/login', { code })
+			.post('http://localhost:3000/refresh', { refreshToken })
 			.then((res) => {
 				setAccessToken(res.data.accessToken)
 				setRefreshToken(res.data.refreshToken)
@@ -20,7 +20,17 @@ export default function useAuth(code) {
 			})
 	}, [code])
 
-	useEffect(() => {}, [refreshToken, expiresIn])
+	useEffect(() => {
+		axios
+			.post('http://localhost:3000/login', { code })
+			.then((res) => {
+				setAccessToken(res.data.accessToken)
+				setExpiresIn(res.data.expiresIn)
+			})
+			.catch(() => {
+				window.location = '/'
+			})
+	}, [refreshToken, expiresIn])
 
 	return accessToken
 }
