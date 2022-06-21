@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -22,16 +23,18 @@ export default function useAuth(code) {
 
 	useEffect(() => {
 		if (!refreshToken || !expiresIn) return
-		axios
-			.post('http://localhost:3000/login', { code })
-			.then((res) => {
-				setAccessToken(res.data.accessToken)
-				setExpiresIn(res.data.expiresIn)
-			})
-			.catch(() => {
-				window.location = '/'
-			})
+		const timeout = setTimeout(() => {
+			axios
+				.post('http://localhost:3000/login', { code })
+				.then((res) => {
+					setAccessToken(res.data.accessToken)
+					setExpiresIn(res.data.expiresIn)
+				})
+				.catch(() => {
+					window.location = '/'
+				})
+		}, (expiresIn - 60) * 1000)
+		return () => clearTimeout(timeout)
 	}, [refreshToken, expiresIn])
-
 	return accessToken
 }
