@@ -7,7 +7,7 @@ export default function Dashboard({ code }) {
 
 	const [search, setSearch] = useState('')
 	return (
-		<Container>
+		<Container className='d-flex flex-column py-2' style={{ height: '100vh' }}>
 			<Form.Control
 				type='search'
 				placeholder='Search Songs/Artists'
