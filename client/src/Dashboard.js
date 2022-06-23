@@ -14,6 +14,9 @@ export default function Dashboard({ code }) {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
+			<div className='flex-grow-1 my-2' style={{ overFlowY: 'auto' }}>
+				Songs
+			</div>
 		</Container>
 	)
 }
