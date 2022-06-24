@@ -17,6 +17,7 @@ export default function Dashboard({ code }) {
 			<div className='flex-grow-1 my-2' style={{ overFlowY: 'auto' }}>
 				Songs
 			</div>
+			<div>Bottom</div>
 		</Container>
 	)
 }
