@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useAuth from './useAuth'
 import { Container, Form } from 'react-bootstrap'
 import SpotifyWebApi from 'spotify-web-api-node'
@@ -11,6 +11,12 @@ export default function Dashboard({ code }) {
 	const accessToken = useAuth(code)
 
 	const [search, setSearch] = useState('')
+
+	useEffect(() => {
+		if (!accessToken) return
+		spotifyApi.setAccessToken(accessToken)
+	}, [accessToken])
+
 	return (
 		<Container className='d-flex flex-column py-2' style={{ height: '100vh' }}>
 			<Form.Control
