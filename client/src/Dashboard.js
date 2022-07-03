@@ -40,6 +40,10 @@ export default function Dashboard({ code }) {
 		spotifyApi.setAccessToken(accessToken)
 	}, [accessToken])
 
+	useEffect(() => {
+    if (!search) return setSearchResults([])
+
+
 	return (
 		<Container className='d-flex flex-column py-2' style={{ height: '100vh' }}>
 			<Form.Control
