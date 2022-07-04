@@ -42,6 +42,7 @@ export default function Dashboard({ code }) {
 
 	useEffect(() => {
     if (!search) return setSearchResults([])
+	if (!accessToken) return
 
 
 	return (
