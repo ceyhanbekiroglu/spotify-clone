@@ -43,7 +43,8 @@ export default function Dashboard({ code }) {
 	useEffect(() => {
     if (!search) return setSearchResults([])
 	if (!accessToken) return
-
+	
+	let cancel = false
 
 	return (
 		<Container className='d-flex flex-column py-2' style={{ height: '100vh' }}>
